@@ -1,0 +1,162 @@
+// Every path here was taken directly from the Senex Postman collection.
+// Do not add or guess endpoints — if it's not in the collection, it doesn't exist yet.
+
+export const ENDPOINTS = {
+  consultations: '/consultations',
+  settings: {
+    show: '/user/settings',
+    updateCurrency: '/user/settings/currency',
+  },
+  auth: {
+    checkEmail: '/auth/check-email',
+    register: '/auth/register',
+    resendRegisterOtp: '/auth/resend-register-otp',
+    verifyRegisterOtp: '/auth/verify-register-otp',
+    login: '/auth/login',
+    sendForgotPasswordOtp: '/auth/send-code',
+    verifyOtp: '/auth/verify-code',
+    resetPassword: '/auth/reset-password',
+  },
+  account: {
+    profile: '/user/account',
+    update: '/user/account/update',
+    updateAvatar: '/user/account/update-avatar',
+    logout: '/user/account/logout',
+  },
+  wallet: {
+    balance: '/user/wallet',
+    deposit: '/user/wallet/deposit',
+    transactions: '/user/wallet/transactions',
+  },
+  discovery: {
+    products: '/user/discovery',
+    categories: '/user/discovery/categories',
+    productsByCategory: (id) => `/user/discovery/category/${id}`,
+    search: '/user/discovery/search',
+    productDetails: (id) => `/user/discovery/products/${id}`,
+  },
+  publicDiscovery: {
+    products: '/discovery',
+    categories: '/discovery/categories',
+    productsByCategory: (id) => `/discovery/category/${id}`,
+    search: '/discovery/search',
+    productDetails: (id) => `/discovery/products/${id}`,
+  },
+  reviews: {
+    index: (reviewableId) => `/user/reviews/${reviewableId}`,
+    create: '/user/reviews',
+  },
+  cart: {
+    get: '/user/cart',
+    add: '/user/cart/add',
+    updateItem: (itemId) => `/user/cart/item/${itemId}`,
+    deleteItem: (itemId) => `/user/cart/item/${itemId}`,
+    clear: '/user/cart/clear',
+    checkout: '/user/cart/process',
+    couponValidate: '/user/cart/coupon/validate',
+    couponApply: '/user/cart/coupon/apply',
+    couponRemove: '/user/cart/coupon/remove',
+  },
+  orders: {
+    index: '/user/orders',
+    show: (id) => `/user/orders/${id}`,
+  },
+  notifications: {
+    index: '/user/notifications',
+    unreadCount: '/user/notifications/unread-count',
+    show: (id) => `/user/notifications/${id}`,
+    markRead: (id) => `/user/notifications/${id}/read`,
+    markAllRead: '/user/notifications/mark-all-read',
+    destroy: (id) => `/user/notifications/${id}`,
+    destroyAll: '/user/notifications/',
+  },
+  blog: {
+    categories: '/blogs/categories',
+    index: '/blogs',
+    show: (id) => `/blogs/${id}`,
+  },
+
+  // --- Admin namespace (paths only — UI lives in the separate admin project) ---
+  admin: {
+    auth: {
+      login: '/admin/auth/login',
+      sendForgotPasswordOtp: '/admin/auth/send-code',
+      verifyOtp: '/admin/auth/verify-code',
+      resetPassword: '/admin/auth/reset-password',
+    },
+    account: {
+      profile: '/admin/profile',
+      update: '/admin/profile',
+      updateAvatar: '/admin/profile/update-avatar',
+      changePassword: '/admin/profile/change-password',
+    },
+    users: {
+      index: '/admin/user-management/',
+      stats: '/admin/user-management/stats',
+      create: '/admin/user-management',
+      show: (id) => `/admin/user-management/${id}`,
+      transactions: (id) => `/admin/user-management/${id}/transactions`,
+      wallets: (id) => `/admin/user-management/${id}/wallets`,
+    },
+    productCategories: {
+      index: '/admin/product-categories',
+      create: '/admin/product-categories',
+      update: (id) => `/admin/product-categories/${id}`,
+      destroy: (id) => `/admin/product-categories/${id}`,
+    },
+    products: {
+      index: '/admin/products',
+      create: '/admin/products',
+      update: (id) => `/admin/products/${id}`,
+      destroy: (id) => `/admin/products/${id}`,
+    },
+    coupons: {
+      index: '/admin/coupons',
+      create: '/admin/coupons',
+      update: (id) => `/admin/coupons/${id}`,
+      destroy: (id) => `/admin/coupons/${id}`,
+    },
+    orders: {
+      stats: '/admin/order-management/fetch/stats',
+      index: '/admin/order-management',
+      show: (id) => `/admin/order-management/${id}`,
+      updateStatus: (id) => `/admin/order-management/${id}/update-status`,
+    },
+    transactions: {
+      index: '/admin/transaction-management',
+      show: (id) => `/admin/transaction-management/${id}`,
+      stats: '/admin/transaction-management/fetch/stats',
+    },
+    settings: {
+      index: '/admin/settings',
+      create: '/admin/settings',
+      show: (id) => `/admin/settings/${id}`,
+      update: (id) => `/admin/settings/${id}`,
+      destroy: (id) => `/admin/settings/${id}`,
+    },
+    blog: {
+      categories: {
+        index: '/admin/blog-management/categories/management',
+        create: '/admin/blog-management/categories/management',
+        show: (id) => `/admin/blog-management/categories/management/${id}`,
+        update: (id) => `/admin/blog-management/categories/management/${id}`,
+        destroy: (id) => `/admin/blog-management/categories/management/${id}`,
+      },
+      index: '/admin/blog-management/',
+      create: '/admin/blog-management/',
+      show: (id) => `/admin/blog-management/${id}`,
+      update: (id) => `/admin/blog-management/${id}`,
+      destroy: (id) => `/admin/blog-management/${id}`,
+    },
+    notifications: {
+      index: '/admin/notifications',
+      unreadCount: '/admin/notifications/unread-count',
+      show: (id) => `/admin/notifications/${id}`,
+      markRead: (id) => `/admin/notifications/${id}/read`,
+      markAllRead: '/admin/notifications/mark-all-read',
+      destroy: (id) => `/admin/notifications/${id}`,
+      destroyAll: '/admin/notifications',
+    },
+    health: '/admin/health',
+  },
+}
