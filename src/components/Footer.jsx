@@ -20,7 +20,7 @@ export default function Footer() {
             <Logo dark />
             <p className="mt-5 text-paper/60 text-[15px] leading-relaxed max-w-sm">
               We don&rsquo;t chase trend cycles. Strategic creativity and measurable
-              performance, built for brands that want to lead their category for longer
+              performance, built for brands that want to lead their industry for longer
               than a quarter.
             </p>
             <div className="flex items-center gap-3 mt-6">
