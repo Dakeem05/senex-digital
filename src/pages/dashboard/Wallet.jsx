@@ -80,7 +80,7 @@ export default function Wallet() {
               <input
                 id="amount"
                 type="number"
-                min="100"
+                min="10"
                 step="1"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
