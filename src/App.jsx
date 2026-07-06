@@ -42,7 +42,6 @@ const Profile = lazy(() => import('./pages/dashboard/Profile.jsx'))
 function MarketingSite() {
   return (
     <div className="font-sans antialiased">
-      <ScrollToTop />
       <Navbar />
       <main>
         <Routes>
@@ -69,6 +68,7 @@ export default function App() {
 
   return (
     <div className="font-sans antialiased">
+      <ScrollToTop />
       <Toaster />
       <Suspense fallback={<FullPageSpinner />}>
         <Routes>
