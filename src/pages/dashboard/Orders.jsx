@@ -50,6 +50,12 @@ export default function Orders() {
                 {formatDate(order.created_at)} · {order.line_items?.length || 0} item
                 {order.line_items?.length === 1 ? '' : 's'}
               </p>
+              {order.order_notes && (
+                <p className="text-ink/50 text-[12.5px] mt-1.5 truncate">
+                  <span className="font-mono text-[10px] uppercase tracking-widest2 mr-1.5">Note:</span>
+                  {order.order_notes}
+                </p>
+              )}
             </div>
             <div className="flex items-center gap-4 shrink-0">
               <span className="font-mono text-[14px] text-ink">

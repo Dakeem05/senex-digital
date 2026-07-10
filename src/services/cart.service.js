@@ -22,13 +22,16 @@ export const cartService = {
   clear: () => apiClient.delete(ENDPOINTS.cart.clear).then(unwrap),
 
   /**
-   * @param {{wallet_usage: boolean}} params - whether to pay (in full or partially) from wallet balance
+   * @param {{wallet_usage: boolean, order_notes?: string}} params - checkout params
    * @returns {Promise<{payment_reference:string, amount:number, gross_total:number, coupon_discount:number, net_total:number, authorization_url?:string}>}
    *   `authorization_url` is only present when the remaining balance is routed to a payment gateway.
    */
-  checkout: ({ wallet_usage }) =>
+  checkout: ({ wallet_usage, order_notes }) =>
     apiClient
-      .post(ENDPOINTS.cart.checkout, toFormData({ wallet_usage: wallet_usage ? 1 : 0 }))
+      .post(ENDPOINTS.cart.checkout, toFormData({ 
+        wallet_usage: wallet_usage ? 1 : 0,
+        ...(order_notes ? { order_notes } : {})
+      }))
       .then(unwrap),
 
   validateCoupon: (couponCode) =>

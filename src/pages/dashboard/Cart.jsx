@@ -29,6 +29,7 @@ export default function Cart() {
   const [couponCode, setCouponCode] = useState('')
   const [useWallet, setUseWallet] = useState(false)
   const [confirmClear, setConfirmClear] = useState(false)
+  const [orderNotes, setOrderNotes] = useState('')
 
   if (cart.isLoading) return <FullPageSpinner label="Loading cart" />
   if (cart.isError) return <ErrorState message={cart.error.message} onRetry={cart.refetch} />
@@ -176,8 +177,18 @@ export default function Cart() {
             </label>
           )}
 
+          <div className="pt-2">
+            <label className="block text-[13px] text-ink/70 mb-1.5">Order Notes (Optional)</label>
+            <textarea
+              value={orderNotes}
+              onChange={(e) => setOrderNotes(e.target.value)}
+              placeholder="Any special instructions for this order?"
+              className="w-full border border-line bg-white px-3 py-2.5 text-[13px] text-ink placeholder:text-ink/35 focus-visible:outline-gold resize-none h-20"
+            />
+          </div>
+
           <button
-            onClick={() => checkout.mutate({ wallet_usage: useWallet })}
+            onClick={() => checkout.mutate({ wallet_usage: useWallet, order_notes: orderNotes })}
             disabled={checkout.isPending}
             className="w-full inline-flex items-center justify-center gap-2 bg-gold text-paper font-mono text-[12px] uppercase tracking-widest2 px-6 py-3.5 hover:bg-gold-light transition-colors border border-gold disabled:opacity-60"
           >

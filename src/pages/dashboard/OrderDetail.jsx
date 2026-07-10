@@ -54,6 +54,12 @@ export default function OrderDetail() {
               </div>
             </div>
           ))}
+          {o.order_notes && (
+            <div className="p-4 sm:p-6 bg-paper-dim/30">
+              <h3 className="font-mono text-[11px] uppercase tracking-widest2 text-ink/50 mb-2">Order Notes</h3>
+              <p className="text-[13.5px] text-ink whitespace-pre-wrap">{o.order_notes}</p>
+            </div>
+          )}
         </div>
 
         <div className="bg-white border border-line p-6 space-y-3 h-fit">
