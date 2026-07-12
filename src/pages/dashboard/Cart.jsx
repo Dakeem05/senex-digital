@@ -182,7 +182,7 @@ export default function Cart() {
             <textarea
               value={orderNotes}
               onChange={(e) => setOrderNotes(e.target.value)}
-              placeholder="Any special instructions for this order?"
+              placeholder="Paste your link and notes  here (profile link, post like depending on what you’re ordering)"
               className="w-full border border-line bg-white px-3 py-2.5 text-[13px] text-ink placeholder:text-ink/35 focus-visible:outline-gold resize-none h-20"
             />
           </div>

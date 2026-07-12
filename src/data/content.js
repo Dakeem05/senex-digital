@@ -7,7 +7,7 @@ export const nav = [
   { label: 'About', to: '/about' },
   { label: 'Services', to: '/services' },
   { label: 'Portfolio', to: '/portfolio' },
-  { label: 'Shop', to: '/discover' },
+  { label: 'Buy services', to: '/discover' },
   { label: 'Blog', to: '/blog' },
   { label: 'Contact', to: '/contact' },
 ]
@@ -20,8 +20,24 @@ export const stats = [
 ]
 
 export const services = [
-  {
+    {
     id: '01',
+    slug: 'social-media-growth',
+    name: 'Social media Growth',
+    short: 'Organic Growth on all social media platforms',
+    description: "People tends to trust brands with high number of followers, engagement more and it will increase your sales and brand value",
+    deliverables: [
+      'Content Strategy & Creation',
+      'Social Media Management',
+      'Paid Ads & Performance Marketing',
+      'Brand Positioning & Identity',
+      'Web Development',
+      'Social Media Growth',
+    ],
+    tags: ['Linkendin', 'Instagram', 'TikTok', 'Youtube', "Facebook"],
+  },
+  {
+    id: '02',
     slug: 'content-strategy',
     name: 'Content Strategy & Creation',
     short: 'Compelling content that resonates with your audience and drives meaningful engagement across all platforms.',
@@ -36,7 +52,7 @@ export const services = [
     tags: ['Content Planning', 'Copywriting', 'Visual Content', 'SEO Optimization'],
   },
   {
-    id: '02',
+    id: '03',
     slug: 'social-media-management',
     name: 'Social Media Management',
     short: 'Strategic social media growth through authentic engagement, community building, and viral content creation.',
@@ -51,7 +67,7 @@ export const services = [
     tags: ['Community Management', 'Content Scheduling', 'Influencer Partnerships', 'Analytics & Reporting'],
   },
   {
-    id: '03',
+    id: '04',
     slug: 'paid-performance-marketing',
     name: 'Paid Ads & Performance Marketing',
     short: 'High-converting ad campaigns that maximize ROI through precise targeting and continuous optimization.',
@@ -66,7 +82,7 @@ export const services = [
     tags: ['Google Ads', 'Facebook & Instagram Ads', 'LinkedIn Advertising', 'Conversion Tracking'],
   },
   {
-    id: '04',
+    id: '05',
     slug: 'brand-positioning-identity',
     name: 'Brand Positioning & Identity',
     short: 'Distinctive brand identities that differentiate you in the market and create lasting emotional connections.',
@@ -81,7 +97,7 @@ export const services = [
     tags: ['Brand Strategy', 'Visual Identity', 'Brand Guidelines', 'Market Positioning'],
   },
   {
-    id: '05',
+    id: '06',
     slug: 'web-development',
     name: 'Web Development',
     short: 'High-performance websites that convert visitors into customers.',
@@ -95,6 +111,7 @@ export const services = [
     ],
     tags: ['Web Design', 'Web Development', 'E-commerce Development', 'Website Optimization'],
   },
+
 ]
 
 export const caseStudies = [

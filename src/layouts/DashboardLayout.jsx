@@ -11,6 +11,7 @@ import {
   Menu,
   X,
   LogOut,
+  ChevronDown,
 } from 'lucide-react'
 import Logo from '../components/Logo.jsx'
 import { useAuth } from '../hooks/useAuth.js'
@@ -18,10 +19,12 @@ import { useWalletBalance } from '../hooks/useWallet.js'
 import { useUnreadCount } from '../hooks/useNotifications.js'
 import { useCart } from '../hooks/useCart.js'
 import { formatCurrency } from '../utils/currency.js'
+import { useUserSettings, useUpdateCurrency } from '../hooks/useSettings.js'
+import { nav } from '../data/content.js'
 
 const NAV = [
   { to: '/dashboard', label: 'Overview', icon: LayoutGrid, end: true },
-  { to: '/dashboard/discover', label: 'Discover', icon: ShoppingBag },
+  { to: '/dashboard/discover', label: 'Buy services', icon: ShoppingBag },
   { to: '/dashboard/cart', label: 'Cart', icon: ShoppingCart },
   { to: '/dashboard/orders', label: 'Orders', icon: Package },
   { to: '/dashboard/wallet', label: 'Wallet', icon: WalletIcon },
@@ -48,15 +51,18 @@ export default function DashboardLayout() {
           </Link>
         </div>
         <SidebarNav onNavigate={() => {}} />
-        <div className="mt-auto p-5 border-t border-navy-line">
-          <button
-            onClick={() => logout()}
-            disabled={isLoggingOut}
-            className="w-full inline-flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-widest2 text-paper/55 hover:text-paper transition-colors disabled:opacity-50"
-          >
-            <LogOut size={15} />
-            {isLoggingOut ? 'Signing out…' : 'Sign out'}
-          </button>
+        <div className="mt-auto flex flex-col">
+          <CurrencySwitcher />
+          <div className="p-5 border-t border-navy-line">
+            <button
+              onClick={() => logout()}
+              disabled={isLoggingOut}
+              className="w-full inline-flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-widest2 text-paper/55 hover:text-paper transition-colors disabled:opacity-50"
+            >
+              <LogOut size={15} />
+              {isLoggingOut ? 'Signing out…' : 'Sign out'}
+            </button>
+          </div>
         </div>
       </aside>
 
@@ -72,13 +78,16 @@ export default function DashboardLayout() {
               </button>
             </div>
             <SidebarNav onNavigate={() => setMobileOpen(false)} />
-            <div className="mt-auto p-5 border-t border-navy-line">
-              <button
-                onClick={() => logout()}
-                className="w-full inline-flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-widest2 text-paper/55"
-              >
-                <LogOut size={15} /> Sign out
-              </button>
+            <div className="mt-auto flex flex-col">
+              <CurrencySwitcher />
+              <div className="p-5 border-t border-navy-line">
+                <button
+                  onClick={() => logout()}
+                  className="w-full inline-flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-widest2 text-paper/55"
+                >
+                  <LogOut size={15} /> Sign out
+                </button>
+              </div>
             </div>
           </aside>
         </div>
@@ -95,9 +104,19 @@ export default function DashboardLayout() {
             <Menu size={22} />
           </button>
 
-          <div className="hidden lg:block font-mono text-[11px] uppercase tracking-widest2 text-ink/40">
-            {user?.name ? `Welcome back, ${user.name.split(' ')[0]}` : 'Dashboard'}
-          </div>
+          <nav className="hidden lg:flex items-center gap-6">
+            {nav
+              .filter((item) => item.label !== 'Buy services' && item.label !== 'Contact')
+              .map((item) => (
+                <Link
+                  key={item.to}
+                  to={item.to}
+                  className="font-mono text-[11px] uppercase tracking-widest2 text-ink/60 hover:text-ink transition-colors"
+                >
+                  {item.label}
+                </Link>
+              ))}
+          </nav>
 
           <div className="flex items-center gap-2 sm:gap-4">
             <Link
@@ -168,5 +187,34 @@ function IconLink({ to, icon: Icon, badge, label }) {
         </span>
       )}
     </Link>
+  )
+}
+
+function CurrencySwitcher() {
+  const { data: settings, isLoading } = useUserSettings()
+  const updateCurrency = useUpdateCurrency()
+
+  if (isLoading || !settings?.supported_currencies?.length) return null
+
+  return (
+    <div className="px-5 py-4 border-t border-navy-line relative">
+      <label htmlFor="currency-switch" className="sr-only">Currency</label>
+      <div className="relative">
+        <select
+          id="currency-switch"
+          value={settings.currency || ''}
+          onChange={(e) => updateCurrency.mutate(e.target.value)}
+          disabled={updateCurrency.isPending}
+          className="w-full bg-navy text-paper/70 font-mono text-[12px] uppercase tracking-widest border border-navy-line px-3 py-2.5 pr-8 outline-none hover:border-gold hover:text-paper focus:border-gold focus:text-paper transition-colors cursor-pointer appearance-none"
+        >
+          {settings.supported_currencies.map((code) => (
+            <option key={code} value={code}>
+              {code}
+            </option>
+          ))}
+        </select>
+        <ChevronDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-paper/55 pointer-events-none" />
+      </div>
+    </div>
   )
 }

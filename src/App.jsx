@@ -17,6 +17,8 @@ import BlogPost from './pages/BlogPost.jsx'
 import PublicDiscover from './pages/Discover.jsx'
 import PublicProductDetail from './pages/PublicProductDetail.jsx'
 import Contact from './pages/Contact.jsx'
+import PrivacyPolicy from './pages/Privacy.jsx'
+import TermsOfService from './pages/TermsOfService.jsx'
 import NotFound from './pages/NotFound.jsx'
 
 import GuestRoute from './routes/GuestRoute.jsx'
@@ -54,6 +56,8 @@ function MarketingSite() {
           <Route path="/discover" element={<PublicDiscover />} />
           <Route path="/discover/:id" element={<PublicProductDetail />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

@@ -11,9 +11,8 @@ export default function Services() {
   return (
     <>
       <PageHeader
-        tag="Capabilities"
-        title="Full-service, without the bloat."
-        sub="Four disciplines, run by people who specialize in them, coordinated by one strategist who owns the outcome."
+        title="Everything a brand needs to grow and build trust."
+        sub="Your branding, website, content, ads are built to work together so every penny and clicks compound toward the same goal: revenue."
       />
 
       <section className="bg-white">

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Camera } from 'lucide-react'
 import { useProfile, useUpdateProfile, useUpdateAvatar, useDeleteAccount } from '../../hooks/useAccount.js'
-import { useUserSettings, useUpdateCurrency } from '../../hooks/useSettings.js'
+
 import { useAuthStore } from '../../store/authStore.js'
 import { FullPageSpinner } from '../../components/ui/Spinner.jsx'
 import { ErrorState } from '../../components/ui/States.jsx'
@@ -19,8 +19,7 @@ export default function Profile() {
   const updateProfile = useUpdateProfile()
   const updateAvatar = useUpdateAvatar()
   const deleteAccount = useDeleteAccount()
-  const settings = useUserSettings()
-  const updateCurrency = useUpdateCurrency()
+
   const clearSession = useAuthStore((s) => s.clearSession)
   const navigate = useNavigate()
 
@@ -119,36 +118,7 @@ export default function Profile() {
         </button>
       </form>
 
-      <div className="bg-white border border-line p-7">
-        <h2 className="font-serif text-lg text-ink">Currency</h2>
-        <p className="text-ink/55 text-[13.5px] mt-1.5">
-          Prices, wallet balance, and orders are shown in this currency. Change it any time —
-          nothing about your account or history is affected.
-        </p>
-        {settings.isLoading ? (
-          <p className="text-ink/40 text-[13px] mt-4">Loading…</p>
-        ) : (
-          <div className="mt-4 flex flex-wrap gap-2">
-            {(settings.data?.supported_currencies || []).map((code) => {
-              const active = settings.data?.currency === code
-              return (
-                <button
-                  key={code}
-                  onClick={() => updateCurrency.mutate(code)}
-                  disabled={updateCurrency.isPending || active}
-                  className={`font-mono text-[12px] uppercase tracking-wide px-4 py-2.5 border transition-colors disabled:cursor-default ${
-                    active
-                      ? 'bg-ink text-paper border-ink'
-                      : 'border-line text-ink/60 hover:border-ink hover:text-ink'
-                  }`}
-                >
-                  {code}
-                </button>
-              )
-            })}
-          </div>
-        )}
-      </div>
+
 
       <div className="border border-red-700/30 bg-red-50 p-7">
         <h2 className="font-serif text-lg text-red-800">Danger Zone</h2>

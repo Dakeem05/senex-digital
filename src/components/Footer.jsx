@@ -82,12 +82,12 @@ export default function Footer() {
         <div className="mt-14 pt-6 border-t border-paper/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-[12px] text-paper/45">
           <p>&copy; {new Date().getFullYear()} Senex Digital. All rights reserved.</p>
           <div className="flex items-center gap-6">
-            <a href="#" className="hover:text-paper/70">
+            <Link to="/privacy-policy" className="hover:text-paper/70">
               Privacy Policy
-            </a>
-            <a href="#" className="hover:text-paper/70">
+            </Link>
+            <Link to="/terms-of-service" className="hover:text-paper/70">
               Terms of Service
-            </a>
+            </Link>
           </div>
         </div>
       </div>

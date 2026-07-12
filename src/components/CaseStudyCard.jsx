@@ -23,13 +23,6 @@ export default function CaseStudyCard({ study }) {
             </div>
           ))}
         </div>
-
-        <a
-          href="#"
-          className="mt-6 inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-widest2 text-ink hover:text-gold transition-colors"
-        >
-          View Case File <ArrowRight size={13} />
-        </a>
       </div>
     </article>
   )
